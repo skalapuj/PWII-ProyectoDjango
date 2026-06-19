@@ -121,7 +121,7 @@ def simular_financiamiento_view(request):
                     message=cuerpo_mensaje,
                     from_email=settings.DEFAULT_FROM_EMAIL,
                     recipient_list=[datos_limpios['email']],
-                    fail_silently=False,
+                    fail_silently=True,
                 )
                 print(f" Correo de confirmación enviado con éxito a: {datos_limpios['email']}")
             except Exception as e:
