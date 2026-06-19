@@ -107,9 +107,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'c2280296.ferozo.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_USE_TLS = False
 
 EMAIL_HOST_USER = 'skalapuj@proyectoweb.website'
 EMAIL_HOST_PASSWORD = 'Sol2026/'

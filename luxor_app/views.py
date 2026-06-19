@@ -1,4 +1,5 @@
 import requests
+import threading
 from django.core.mail import send_mail
 from django.shortcuts import render
 from django.http import JsonResponse
@@ -10,6 +11,18 @@ from django.conf import settings
 def pagina_inicial(request):
     return render(request, "luxor_app/index.html")
 
+def enviar_mail_background(asunto, mensaje, destino):
+    try:
+        send_mail(
+            subject=asunto,
+            message=mensaje,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[destino],
+            fail_silently=True,
+        )
+
+    except Exception as e:
+        print(f"Error en el hilo de envio: {str(e)}")
 
 def obtener_cotizacion_dolar_view(request):
     url_api_externa = "https://dolarapi.com/v1/dolares/oficial"
@@ -88,47 +101,38 @@ def simular_financiamiento_view(request):
                     'errors': [f"Error crítico al guardar en Base de Datos: {str(e)}"]
                 }, status=500)
 
-            try:
-                asunto_mail = f"Confirmación de Simulación de Financiamiento - Luxor Motors"
+            asunto_mail = f"Confirmación de Simulación de Financiamiento - Luxor Motors"
 
-                cuerpo_mensaje = (
-                    f"Hola {datos_limpios['nombre']},\n\n"
-                    f"¡Gracias por consultar en Luxor Motors! Te confirmamos que tu solicitud de simulación "
-                    f"ha sido procesada y aprobada con éxito por nuestro sistema de calificación.\n\n"
-                    f"A continuación, te detallamos el Informe Final de tu financiamiento:\n"
-                    f"==================================================\n"
-                    f"• Vehículo Seleccionado: {res_calculado['modelo']}\n"
-                    f"• Precio de Lista Base: ${res_calculado['precio_base']:,}\n"
-                    f"• Tipo de Financiamiento: {res_calculado['plan']}\n"
-                    f"• Cantidad de Cuotas: {res_calculado['cuotas']} meses\n"
-                    f"--------------------------------------------------\n"
-                    f"• VALOR CUOTA MENSUAL: ${res_calculado['cuota_mensual']:,}\n"
-                    f"• Importe Adjudicación (30% o 0%): ${res_calculado['adjudicacion']:,}\n"
-                    f"• Gastos Estimados de Retiro (8%): ${res_calculado['gastos_retiro']:,}\n"
-                    f"• Tasa de Interés Nominal Anual: {res_calculado['tasa']}\n"
-                    f"==================================================\n\n"
-                    f"Datos del Garante Calificado:\n"
-                    f"• Nombre completo: {datos_limpios['garante_nombre']}\n"
-                    f"• Relación laboral: {datos_limpios['garante_tipo_trabajo']}\n\n"
-                    f"Un asesor comercial se estará comunicando con vos al teléfono {datos_limpios['telefono']} "
-                    f"para ultimar los detalles del contrato de adjudicación.\n\n"
-                    f"Atentamente,\n"
-                    f"El equipo de Luxor Motors S.A. 2026."
-                )
+            cuerpo_mensaje = (
+                f"Hola {datos_limpios['nombre']},\n\n"
+                f"¡Gracias por consultar en Luxor Motors! Te confirmamos que tu solicitud de simulación "
+                f"ha sido procesada y aprobada con éxito por nuestro sistema de calificación.\n\n"
+                f"A continuación, te detallamos el Informe Final de tu financiamiento:\n"
+                f"==================================================\n"
+                f"• Vehículo Seleccionado: {res_calculado['modelo']}\n"
+                f"• Precio de Lista Base: ${res_calculado['precio_base']:,}\n"
+                f"• Tipo de Financiamiento: {res_calculado['plan']}\n"
+                f"• Cantidad de Cuotas: {res_calculado['cuotas']} meses\n"
+                f"--------------------------------------------------\n"
+                f"• VALOR CUOTA MENSUAL: ${res_calculado['cuota_mensual']:,}\n"
+                f"• Importe Adjudicación (30% o 0%): ${res_calculado['adjudicacion']:,}\n"
+                f"• Gastos Estimados de Retiro (8%): ${res_calculado['gastos_retiro']:,}\n"
+                f"• Tasa de Interés Nominal Anual: {res_calculado['tasa']}\n"
+                f"==================================================\n\n"
+                f"Datos del Garante Calificado:\n"
+                f"• Nombre completo: {datos_limpios['garante_nombre']}\n"
+                f"• Relación laboral: {datos_limpios['garante_tipo_trabajo']}\n\n"
+                f"Un asesor comercial se estará comunicando con vos al teléfono {datos_limpios['telefono']} "
+                f"para ultimar los detalles del contrato de adjudicación.\n\n"
+                f"Atentamente,\n"
+                f"El equipo de Luxor Motors S.A. 2026."
+            )
 
-                send_mail(
-                    subject=asunto_mail,
-                    message=cuerpo_mensaje,
-                    from_email=settings.DEFAULT_FROM_EMAIL,
-                    recipient_list=[datos_limpios['email']],
-                    fail_silently=True,
-                )
-                print(f" Correo de confirmación enviado con éxito a: {datos_limpios['email']}")
-            except Exception as e:
-                return JsonResponse({
-                    'status': 'error',
-                    'errors': [f"Error crítico al enviar en email: {str(e)}"]
-                }, status=500)
+            hilo_mail = threading.Thread(
+                target=enviar_mail_background,
+                args=(asunto_mail, cuerpo_mensaje, datos_limpios['email'])
+            )
+            hilo_mail.start()
 
             return JsonResponse({
                 'status': 'success',
