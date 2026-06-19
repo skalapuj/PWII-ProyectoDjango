@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 import os
+import dj_database_url
 from pathlib import Path
 
 from django.conf.global_settings import STATICFILES_DIRS
@@ -78,14 +79,11 @@ WSGI_APPLICATION = 'luxor_project.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'proyectoDjango',
-        'USER': 'postgres',
-        'PASSWORD': '12345678',
-        'HOST': 'localhost',
-        'PORT': 5432
-    }
+    'default': dj_database_url.config(
+        default='postgresql://proyectodjango_1ca5_user:MK3RggdLT6Z2HEaNpU0I6fgRqUMrcCjP@dpg-d8qae3egvqtc73a2c3m0-a.oregon-postgres.render.com/proyectodjango_1ca5',
+        conn_max_age=600,
+        ssl_require=True
+    ),
 }
 
 
