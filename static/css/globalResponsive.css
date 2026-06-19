@@ -1,0 +1,52 @@
+/* ==========================================================================
+   DISEÑO RESPONSIVE GLOBAL
+   ========================================================================== */
+/* --- Pantallas Medianas / Laptops (1440px aprox) --- */
+@media (max-width: 90rem) {
+    .social-links a {
+        padding: 0.8rem;
+        font-size: 1rem;
+    }
+
+    .copyright {
+        font-size: 0.9rem;
+        text-align: center;
+    }
+}
+
+/* --- Tablets y Celulares (768px aprox) --- */
+@media (max-width: 48rem) {
+    /* Configuración Global */
+    :root {
+        --padding-side: 1.5rem;
+    }
+
+    /* Header */
+    .main-header {
+        padding: 0 1rem;
+    }
+
+    .logo img {
+        height: 1.8rem;
+    }
+
+    /* Footer Layout */
+    footer {
+        height: auto;
+    }
+
+    .footer-container {
+        margin: 1rem 0;
+    }
+
+    .footer-flex {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        gap: 0.8rem;
+    }
+
+    .social-links a {
+        padding: 0rem;
+    }
+}

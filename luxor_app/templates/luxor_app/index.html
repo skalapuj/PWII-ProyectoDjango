@@ -1,0 +1,267 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'luxor_app/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'luxor_app/responsive.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="index-container">
+
+    <section id="inicio"  class="hero-conteiner">
+        <div class="hero-block">
+        </div>
+
+        <div class="hero-content container">
+            <h2 class="hero-title">Tu camino empieza</h2>
+            <h1 class="hero-title">AHORA</h1>
+        </div>
+    </section>
+
+    <section id="modelos" class="block-general container">
+        <div class="section-header">
+            <div class="line fisrtline"></div>
+            <span class="step-number">1.</span>
+            <h2 class="section-title-text">Elige tu modelo</h2>
+            <div class="line"></div>
+        </div>
+        <div class="modelos-grid" id="car-grid">
+
+            <article class="car-card" data-model="Fiat Cronos Precision" data-price="38500000">
+                <div class="car-image">
+                    <img src="{% static 'images/cronos.png' %}" alt="Fiat Cronos">
+                </div>
+                <div class="car-details">
+                    <h3 class="car-name">Fiat Cronos Precision</h3>
+                    <p class="car-price">Desde <b>$38.500.000</b></p>
+                    <button type="button" class="btn btn-secondary btn-select">Seleccionar</button>
+                </div>
+            </article>
+
+            <article class="car-card" data-model="VW Taos Comfortline" data-price="59000000">
+                <div class="car-image"><img src="{% static 'images/vw.png' %}" alt="VW Taos"></div>
+                <div class="car-details">
+                    <h3 class="car-name">VW Taos Comfortline</h3>
+                    <p class="car-price">Desde <b>$59.000.000</b></p>
+                    <button type="button" class="btn btn-secondary btn-select">Seleccionar</button>
+                </div>
+            </article>
+
+            <article class="car-card" data-model="Toyota SW4 SRX" data-price="95000000">
+                <div class="car-image"><img src="{% static 'images/toyota.png' %}" alt="Toyota SW4"></div>
+                <div class="car-details">
+                    <h3 class="car-name">Toyota SW4 SRX</h3>
+                    <p class="car-price">Desde <b>$95.000.000</b></p>
+                    <button type="button" class="btn btn-secondary btn-select">Seleccionar</button>
+                </div>
+            </article>
+
+            <article class="car-card" data-model="Audi A4 Quattro" data-price="155000000">
+                <div class="car-image"><img src="{% static 'images/audi.png' %}" alt="Audi A4"></div>
+                <div class="car-details">
+                    <h3 class="car-name">Audi A4 Quattro</h3>
+                    <p class="car-price">Desde <b>$155.000.000</b></p>
+                    <button type="button" class="btn btn-secondary btn-select">Seleccionar</button>
+                </div>
+            </article>
+
+            </div>
+    </section>
+
+
+    <section id="requisitos" class="block-general container">
+        <div class="section-header">
+            <div class="line fisrtline"></div>
+            <span class="step-number">2.</span>
+            <h2 class="section-title-text">Verifica los requisitos</h2>
+            <div class="line"></div>
+        </div>
+        <div class="requisitos-card">
+            <div class="requisitos-grid">
+                <div class="requisitos-col">
+                    <h3 class="requisitos-subtitle">Requisitos del Titular para calificar:</h3>
+                    <ul class="requisitos-list">
+                        <li>Tener, como mínimo, 18 años</li>
+                        <li>Tener, como máximo, 75 años al finalizar el plan</li>
+                        <li>Presentar un garante</li>
+                    </ul>
+                </div>
+
+                <div class="vertical-divider"></div>
+
+                <div class="requisitos-col">
+                    <h3 class="requisitos-subtitle">Requisitos del Garante:</h3>
+                    <ul class="requisitos-list">
+                        <li>Tener, como mínimo, 18 años</li>
+                        <li>Tener una antigüedad laboral mínima de 1 año para trabajadores en relación de dependencia y 2 años para trabajadores independientes</li>
+                        <li>Tener un ingreso neto mayor a 4 veces el valor de la cuota</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="financiamiento" class="block-general container">
+        <div class="section-header">
+            <div class="line fisrtline"></div>
+            <span class="step-number">3.</span>
+            <h2 class="section-title-text">Define tu financiamiento</h2>
+            <div class="line"></div>
+        </div>
+
+        <div class="simulador-container">
+            <div class="form-wrapper">
+                <div class="tabs-nav">
+                    <button class="tab-btn active" onclick="openTab(event, 'datos-personales')">Datos personales</button>
+                    <button class="tab-btn" onclick="openTab(event, 'datos-garante')">Datos del garante</button>
+                    <button class="tab-btn" onclick="openTab(event, 'datos-plan')">Datos del plan</button>
+                </div>
+
+                <div class="formulario">
+                    <form id="simulador-form" class="tabs-content" method="post">
+                        {% csrf_token %}
+
+                        <div id="datos-personales" class="tab-panel active">
+                            <h3>Completa el formulario</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="id_nombre">Nombre</label>
+                                    <input type="text" id="id_nombre" name="nombre" placeholder="Ej: Juan Pérez">
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_dni">DNI</label>
+                                    <input type="text" id="id_dni" name="dni" placeholder="Sin puntos">
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_telefono">Teléfono</label>
+                                    <input type="tel" id="id_telefono" name="telefono" placeholder="+54 9...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_email">Email</label>
+                                    <input type="email" id="id_email" name="email" placeholder="email@email.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_ingresos_personal">Ingresos</label>
+                                    <input type="number" id="id_ingresos_personal" name="ingresos_personal" placeholder="Ingreso neto">
+                                    <div id="cartel-ingreso-personal" class="cartel-dolar" ></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_edad">Edad</label>
+                                    <input type="number" id="id_edad" name="edad" placeholder="ej:23">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="datos-garante" class="tab-panel">
+                            <h3>Datos del garante</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="id_garante_nombre">Nombre del Garante</label>
+                                    <input type="text" id="id_garante_nombre" name="garante_nombre" placeholder="Nombre completo">
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_ingresos">Ingresos</label>
+                                    <input type="number" id="id_ingresos" name="ingresos_garante" placeholder="Ingreso neto">
+                                    <div id="cartel-ingreso-garante" class="cartel-dolar" ></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Tipo de Trabajo</label>
+                                    <div class="radio-group">
+                                        <label>
+                                            <input type="radio" id="id_tipo_dependiente" name="garante_tipo_trabajo" value="dependiente">
+                                            Relación de Dependencia
+                                        </label>
+                                        <label>
+                                            <input type="radio" id="id_tipo_independiente" name="garante_tipo_trabajo" value="independiente">
+                                            Independiente
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="id_garante_antiguedad">Años de Antigüedad</label>
+                                    <input type="number" id="id_garante_antiguedad" name="garante_antiguedad" placeholder="Ej: 3">
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_edad_garante">Edad</label>
+                                    <input type="number" id="id_edad_garante" name="edad_garante" placeholder="Ej: 23">
+                                </div>
+                             </div>
+                        </div>
+
+                        <div id="datos-plan" class="tab-panel">
+                            <h3>Datos del plan</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="id_modelo">Modelo</label>
+                                    <select id="id_modelo" name="modelo">
+                                        <option value="Fiat Cronos Precision" selected>Fiat Cronos Precision</option>
+                                        <option value="VW Taos Comfortline">VW Taos Comfortline</option>
+                                        <option value="Toyota SW4 SRX">Toyota SW4 SRX</option>
+                                        <option value="Audi A4 Quattro">Audi A4 Quattro</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="id_plan">Plan</label>
+                                    <select id="id_plan" name="plan">
+                                        <option value="Plan 70/30">Plan 70/30</option>
+                                        <option value="Plan 80/20">Plan 80/20</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button id="boton-simular" type="submit" class="btn btn-primary btn-full">Simular plan</button>
+                    </form>
+                </div>
+            </div>
+
+            <aside class="informe-card">
+                <h3 class="informe-title">Informe de financiamiento</h3>
+                <div class="informe-body">
+                    <div class="car-summary">
+                        <div class="car-info">
+                            <p>Vehículo Escogido: </p>
+                            <p><strong class="dinamico-modelo">Fiat Cronos Precision</strong></p>
+                            <p class="price-highlight dinamico-precio-base">$38.500.000</p>
+                        </div>
+
+                        <img src="{% static 'images/cronos.png' %}" alt="Fiat Cronos" class="informe-img">
+                    </div>
+
+                    <div class="informe-row">
+                        <span>Financiamiento</span>
+                        <strong id="dinamico-plan">Plan 70/30</strong>
+                    </div>
+                    <div class="informe-row">
+                        <span>Cantidad de Cuotas</span>
+                        <strong class="dinamico-cuotas">84</strong>
+                    </div>
+                    <div class="informe-row">
+                        <span>Importe Adjudicación</span>
+                        <strong id="dinamico-adjudicacion">$----</strong>
+                    </div>
+                    <div class="informe-row">
+                        <span>Gastos Retiro</span>
+                        <strong id="dinamico-gastos">$----</strong>
+                    </div>
+                    <div class="informe-row">
+                        <span>Tasa Interés</span>
+                        <strong id="dinamico-tasa">--,--%</strong>
+                    </div>
+
+                    <div class="informe-total">
+                        <span>Valor Cuota Mensual</span>
+                        <strong class="total-price" id="dinamico-cuota-final">$----</strong>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+</main>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'luxor_app/scripts.js' %}"></script>
+{% endblock %}

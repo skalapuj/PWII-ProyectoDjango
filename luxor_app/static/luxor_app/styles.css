@@ -1,0 +1,570 @@
+/* ==========================================================================
+   1. VARIABLES
+   ========================================================================== */
+:root {
+    /* Colors */
+    --clr-white: #ffffff;
+    --clr-black: #000000;
+    --clr-red: #dc3545;
+    --clr-dark: #333333;
+    --clr-info: #284eb7;
+    --clr-gray-ex-light: #ddd;
+    --clr-gray-dark: #444444;
+    --clr-gray-medium: #555555;
+    --clr-gray-light: #666666;
+    --clr-gray-muted: #888888;
+    --clr-gray-border: #eeeeee;
+    --clr-gray-input: #fdfdfd;
+    --clr-gray-bg: #fafafa;
+    --clr-gray-soft: #f5f5f5;
+    --clr-btn-hover: #c06554;
+    --clr-btn-select: #e2e2e7;
+    --clr-btn-select-hover: #d1d1d8;
+    --clr-btn-select-selected: #fffaf9a6;
+    --clr-hero-overlay-start: rgba(21, 20, 36, 0.7);
+    --clr-hero-overlay-end: rgba(21, 20, 36, 0.9);
+    --clr-card-border: rgba(0, 0, 0, 0.05);
+    --clr-shadow-light: rgba(0, 0, 0, 0.1);
+    --clr-shadow-heavy: rgba(0, 0, 0, 0.15);
+    --clr-shadow-deep: rgba(0, 0, 0, 0.3);
+    --clr-shadow-form: rgba(0, 0, 0, 0.05);
+    --clr-shadow-tab: rgba(0, 0, 0, 0.02);
+    --clr-shadow-btn: rgba(167, 83, 69, 0.3);
+    --clr-gradient-btn-end: #6b352c;
+    --clr-warn-border: #dc3545;
+    --clr-warn-bg: #fff8f8;
+}
+
+/* ==========================================================================
+   2. UTILITIES
+   ========================================================================== */
+/* Main */
+.index-container {
+    background-color: var(--clr-white);
+    color: var(--clr-black);
+}
+
+/* Títulos de Sección Generales */
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 70;
+    margin-bottom: 3rem;
+    letter-spacing: 0.125rem;
+}
+
+/* BOTONES GENERALES */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    font-family: var(--font-main);
+    font-weight: 70;
+    font-size: 0.9rem;
+    text-decoration: none;
+    letter-spacing: 0.0625rem;
+    border-radius: 0.2rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--accent);
+    color: var(--text-main);
+}
+
+.btn-primary:hover {
+    background-color: var(--clr-btn-hover);
+    transform: translateY(-0.125rem);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-main);
+    border: 0.125rem solid var(--text-main);
+}
+
+.btn-secondary:hover {
+    background-color: var(--text-main);
+    color: var(--bg-dark);
+}
+
+#boton-simular:disabled{
+    background: var(--clr-gray-muted);
+}
+
+/* BLOQUES GENERALES*/
+.block-general {
+    padding: 1rem 0;
+}
+
+/* ==========================================================================
+   2. BLOQUE 1: HERO
+   ========================================================================== */
+.hero-conteiner {
+    padding-bottom: 3rem;
+    background-color: var(--bg-dark);
+    color: var(--clr-white);
+}
+
+.hero-block {
+    height: 30vh;
+    background-image: linear-gradient(var(--clr-hero-overlay-start), var(--clr-hero-overlay-end)),
+                      url('../images/fondoMain.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 500;
+    color: var(--text-main);
+    letter-spacing: 0.1875rem;
+    line-height: 1.2;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    font-weight: 30;
+}
+
+/* ==========================================================================
+   2. BLOQUE 2: MODELOS
+   ========================================================================== */
+.modelos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 2.5rem;
+    margin: 1rem;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem;
+    width: 100%;
+}
+
+.step-number {
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--text-muted);
+}
+
+.section-title-text {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--clr-dark);
+    letter-spacing: 0.04rem;
+    white-space: nowrap;
+    text-transform: none;
+}
+
+.line {
+    height: 0.0625rem;
+    background-color: var(--lines);
+}
+
+.line:not(.fisrtline) {
+    flex-grow: 1;
+    margin-right: 4rem;
+}
+
+.fisrtline {
+    width: 3rem;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.car-card {
+    background-color: var(--clr-white);
+    color: var(--clr-dark);
+    border-radius: 0.6rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 0.0625rem solid var(--clr-card-border);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0.25rem 0.375rem var(--clr-shadow-light);
+}
+
+.car-card:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 0 0.9375rem 1.875rem var(--clr-shadow-heavy);
+}
+
+.car-image {
+    width: 100%;
+    height: 15rem;
+    background-color: var(--clr-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem 0 1rem;
+}
+
+.car-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.car-details {
+    padding: 2rem;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.car-name {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--clr-black);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.0625rem;
+}
+
+.car-price {
+    font-size: 1rem;
+    color: var(--clr-gray-light);
+    margin-bottom: 2rem;
+    font-weight: 400;
+}
+
+.btn-select {
+    background-color: var(--clr-btn-select);
+    color: var(--clr-gray-medium);
+    border: none;
+    font-weight: 400;
+    font-size: 0.85rem;
+    letter-spacing: 0.0625rem;
+    width: 100%;
+}
+
+.btn-select:hover {
+    background-color: var(--clr-btn-select-hover);
+    transform: none;
+}
+
+.car-card.selected {
+    border: 0.125rem solid var(--accent);
+    position: relative;
+    background-color: var(--accent-low);
+}
+
+.car-card.selected::before {
+    content: '✔';
+    position: absolute;
+    top: 0.625rem;
+    left: 0.625rem;
+    width: 1.875rem;
+    height: 1.875rem;
+    color: var(--accent);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+    z-index: 10;
+}
+
+.car-card.selected .car-image {
+    background-color: var(--accent-low);
+}
+
+.car-card.selected .btn-select {
+    background-color: var(--clr-btn-select-selected);
+    color: var(--accent);
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   2. BLOQUE 3: REQUISITOS
+   ========================================================================== */
+.requisitos-card {
+    background-color: var(--bg-light);
+    border-radius: 0.8rem;
+    padding: 1rem 2.5rem;
+    box-shadow: 0 0.25rem 1.25rem var(--clr-shadow-deep);
+    margin: 1rem;
+}
+
+.requisitos-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.requisitos-col {
+    flex: 1;
+}
+
+.requisitos-subtitle {
+    color: var(--accent);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    border-bottom: 0.0625rem solid var(--clr-gray-border);
+    padding-bottom: 1rem;
+}
+
+.requisitos-list {
+    list-style: none;
+    padding: 0;
+}
+
+.requisitos-list li {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 1.2rem;
+    color: var(--clr-gray-dark);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.requisitos-list li::before {
+    content: '✔';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: bold;
+}
+
+.vertical-divider {
+    width: 0.0625rem;
+    background-color: var(--clr-gray-border);
+    align-self: stretch;
+}
+
+/* ==========================================================================
+   2. BLOQUE 4: FINANCIAMIENTO
+   ========================================================================== */
+.simulador-container {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 0;
+    padding: 0 2.5rem 2.5rem 2rem;
+    border-radius: 0.8rem;
+    color: var(--clr-dark);
+}
+
+.form-wrapper {
+    background-color: var(--clr-white);
+    border-radius: 1rem 0 0 1rem;
+    box-shadow: 0 0.625rem 1.875rem var(--clr-shadow-form);
+}
+
+.formulario {
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+.tabs-content {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.tabs-nav {
+    display: flex;
+    gap: 0.5rem;
+    border-bottom: 0.125rem solid var(--clr-gray-soft);
+    padding-bottom: 0;
+}
+
+.tab-btn {
+    padding: 1rem 1.8rem;
+    border: 0.0625rem solid var(--clr-gray-border);
+    border-bottom: none;
+    background-color: var(--clr-gray-bg);
+    cursor: pointer;
+    font-family: var(--font-main), sans-serif;
+    font-weight: 500;
+    color: var(--clr-gray-muted);
+    border-radius: 0.8rem 0.8rem 0 0;
+    transition: all 0.3s ease;
+    margin-bottom: -0.125rem;
+}
+
+.tab-btn.active {
+    background-color: var(--clr-white);
+    color: var(--clr-dark);
+    font-weight: 700;
+    border-color: var(--clr-gray-border);
+    border-bottom: 0.1875rem solid var(--clr-white);
+    box-shadow: 0 -0.25rem 0.625rem var(--clr-shadow-tab);
+}
+
+.tab-panel {
+    display: none;
+}
+
+.tab-panel h3{
+    margin-bottom: 2rem;
+}
+
+.tab-panel.active {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--clr-gray-medium);
+}
+
+.radio-group{
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 0.8rem;
+}
+
+.radio-group label{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: normal;
+    cursor: pointer;
+}
+.form-group input, 
+.form-group select {
+    width: 100%;
+    padding: 1rem;
+    border: 0.09375rem solid var(--clr-gray-border);
+    border-radius: 0.5rem;
+    background-color: var(--clr-gray-input);
+    font-family: var(--font-main), sans-serif;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.btn-full {
+    width: 60%;
+    margin: auto;
+    display: block;
+    padding: 1.2rem;
+    background: linear-gradient(to bottom, var(--accent) 0%, var(--clr-gradient-btn-end) 100%);
+    color: var(--clr-white);
+    border: none;
+    border-radius: 0.6rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 0.25rem 0.9375rem var(--clr-shadow-btn);
+}
+
+.radio-group input{
+    width: 1rem;
+}
+
+.cartel-dolar{
+    font-size: 0.85rem;
+    color: var(--clr-info);
+    margin-top: 0.4rem;
+    font-weight: 500;
+}
+
+/* --- INFORME LATERAL --- */
+.informe-card {
+    border: 0.0625rem solid var(--accent);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    background-color: var(--clr-white);
+}
+
+.car-summary {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 0.0625rem solid var(--clr-gray-ex-light);
+}
+
+.car-text-container {
+    flex: 1;
+}
+
+.informe-img {
+    max-width: 18.75rem;
+    width: 12.5rem;
+    height: auto;
+    object-fit: contain;
+    margin: 1rem 0;
+}
+
+.informe-title {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--clr-dark);
+}
+
+.informe-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin: 1rem 0;
+    border-bottom: 0.0625rem solid var(--clr-gray-ex-light);
+    padding-bottom: 0.5rem;
+}
+
+.informe-total {
+    padding-bottom: 1rem;
+    border-bottom: 0.0625rem solid var(--clr-gray-ex-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total-price {
+    color: var(--accent);
+    font-size: 1.5rem;
+}
+
+/* ==========================================================================
+   3. Clases JS
+   ========================================================================== */
+.form-group input.is-invalid, .form-group select.is-invalid {
+    border-color: var(--clr-warn-border) !important;
+    background-color: var(--clr-warn-bg);
+}
+
+.error-mensaje {
+    color: var(--clr-red);
+    font-size: 0.85em;
+    display: block;
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+.form-group input:focus{
+    border: 0.09375rem solid var(--clr-gray-border);
+}

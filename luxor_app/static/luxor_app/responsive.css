@@ -1,0 +1,101 @@
+/* ==========================================================================
+   DISEÑO RESPONSIVE
+   ========================================================================== */
+/* Laptops / Pantallas medianas (1248px) */
+@media (max-width: 78rem) {
+    .informe-img {
+        width: 20rem;
+    }
+    .car-summary {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+    .radio-group{
+        display: flex;
+        flex-direction: column;
+    }
+    .radio-group input{
+        width: 1rem;
+    }
+}
+
+/* Tablets (832px) */
+@media (max-width: 52rem) {
+    /* Layout y Estructura */
+    .form-grid,
+    .simulador-container,
+    .requisitos-grid {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+    }
+
+    .section-header { gap: 0.5rem; }
+
+    /* Elementos Decorativos */
+    .fisrtline,
+    .vertical-divider {
+        display: none;
+    }
+
+    .line:not(.fisrtline) {
+        margin-right: 1rem;
+    }
+
+    /* Componentes */
+    .requisitos-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .simulador-container {
+        padding: 0rem 1rem 1.5rem 1rem;
+    }
+
+}
+
+/* Celulares Grandes (520px) */
+@media (max-width: 32rem) {
+    /* Tipografía y Títulos */
+    .hero-title { font-size: 2.5rem; }
+    .section-title { font-size: 2rem; }
+    .section-title-text { font-size: 1.4rem; letter-spacing: 0.005rem; }
+    .step-number { font-size: 1.2rem; }
+
+    .car-name{font-size: 1.3rem; }
+    .car-price{font-size: 1rem; }
+
+    .tab-panel h3{ margin-bottom: 1rem}
+}
+
+/* Celulares Pequeños (448px) */
+@media (max-width: 28rem) {
+    .informe-img {
+        width: 11rem;
+    }
+
+    /* Reducción extra de títulos para pantallas muy pequeñas */
+    .hero-title {font-size: 2rem;}
+    .section-title { font-size: 1.5rem; }
+    .section-title-text { font-size: 1.2rem; letter-spacing: 0.005rem; }
+    .step-number { font-size: 1.1rem; }
+
+    .car-name{font-size: 1rem; }
+    .car-price{font-size: 0.8rem; }
+    h3{font-size: 1rem;}
+    .tab-panel h3{ margin-bottom: 0.7rem}
+
+    .tab-btn {
+        padding: 0.4rem 0.4rem;
+        font-size: 0.85rem;
+    }
+
+    .requisitos-subtitle {
+        padding-bottom: 0.5rem;
+        margin-bottom: 0.75rem;
+        font-size: 1rem;
+    }
+
+    .form-group label {
+        margin: 0;
+    }
+}

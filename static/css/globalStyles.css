@@ -1,0 +1,154 @@
+/* ==========================================================================
+   1. VARIABLES
+   ========================================================================== */
+:root {
+    /* Colors */
+    --bg-dark: #151424;
+    --bg-light: #faf9fa;
+    --text-main: #ffffff;
+    --text-muted: #5d5c67;
+    --accent: #A75345;
+    --accent-low: #f0dfdb;
+    --accent-hover: #d4af37;
+    --lines: #e0e0e0;
+
+    /* Typography */
+    --font-main: 'Montserrat', sans-serif;
+
+    /* Layout */
+    --header-height: 5rem;
+    --padding-side: clamp(1rem, 5vw, 10rem);
+    --max-width-site: 2500px;
+}
+
+/* ==========================================================================
+   2. RESET & BASE STYLES
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+body {
+    background-color: var(--bg-dark);
+    font-family: var(--font-main);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   3. LAYOUT & UTILITIES
+   ========================================================================== */
+.container {
+    width: 100%;
+    max-width: var(--max-width-site);
+    margin: 0 auto;
+    padding: 0 var(--padding-side);
+}
+
+/* ==========================================================================
+   4. HEADER (Navigation)
+   ========================================================================== */
+.main-header {
+    background-color: var(--bg-dark);
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 0 var(--padding-side);
+}
+
+.navbar {
+    width: 100%;
+    max-width: var(--max-width-site);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 2.1875rem;
+    width: auto;
+    display: block;
+}
+
+.menu-toggle {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3125rem;
+}
+
+.bar {
+    width: 1.5625rem;
+    height: 0.125rem;
+    background-color: var(--text-muted);
+    border-radius: 0.125rem;
+    transition: background-color 0.3s ease;
+}
+
+/* ==========================================================================
+   5. FOOTER
+   ========================================================================== */
+footer {
+    background-color: var(--bg-dark);
+    min-height: var(--header-height);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem var(--padding-side);
+}
+
+.footer-container {
+    width: 100%;
+    max-width: var(--max-width-site);
+    margin: 0 auto;
+}
+
+.footer-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-logo img {
+    height: 2rem;
+    filter: grayscale(1);
+    opacity: 0.7;
+}
+
+.copyright {
+    font-size: 1.5rem;
+    letter-spacing: 0.0938rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+/* Social Links */
+.social-links {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+}
+
+.social-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--accent);
+}
