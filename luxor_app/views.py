@@ -116,13 +116,16 @@ def simular_financiamiento_view(request):
                     f"El equipo de Luxor Motors S.A. 2026."
                 )
 
-                send_mail(
-                    subject=asunto_mail,
-                    message=cuerpo_mensaje,
-                    from_email=settings.DEFAULT_FROM_EMAIL,
-                    recipient_list=[datos_limpios['email']],
-                    fail_silently=False,
-                )
+# Comento el envío de mail acá porque Render (gratis) bloquea
+# los puertos SMTP y hace que la app tire error 500 por timeout.
+# En local con Ferozo funciona.
+#                send_mail(
+#                    subject=asunto_mail,
+#                    message=cuerpo_mensaje,
+#                    from_email=settings.DEFAULT_FROM_EMAIL,
+#                    recipient_list=[datos_limpios['email']],
+#                    fail_silently=False,
+#                )
                 print(f" Correo de confirmación enviado con éxito a: {datos_limpios['email']}")
             except Exception as e:
                 return JsonResponse({
